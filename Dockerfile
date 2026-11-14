@@ -1,4 +1,4 @@
-# Usar imagem oficial Node.js LTS
+# Usar imagem oficial Node.js LTSs
 FROM node:18-alpine
 
 # Definir diretório de trabalho
