@@ -92,13 +92,19 @@ app.use((error, req, res, next) => {
 module.exports = app;
 
 // Inicialização do Servidor
-const server = app.listen(PORT, () => {
-  console.log(JSON.stringify({ 
-    severity: 'INFO', 
-    message: `Servidor em produção na porta ${PORT}`,
-    node_version: process.version
-  }));
-});
+if (require.main === module) {
+  const server = app.listen(PORT, () => {
+    console.log(JSON.stringify({
+      severity: 'INFO',
+      message: `Servidor em produção na porta ${PORT}`,
+      node_version: process.version
+    }));
+  });
+
+  // se você tiver handlers de SIGTERM usando `server`, mantenha-os aqui dentro
+}
+
+module.exports = app;
 
 // GRACEFUL SHUTDOWN: O "Pulo do Gato" para Produção
 process.on('SIGTERM', () => {
