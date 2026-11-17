@@ -10,7 +10,6 @@ env:
   NODE_VERSION: '18'
 
 jobs:
-  # Job 1: Testes e qualidade de código
   test:
     name: Test Application
     runs-on: ubuntu-latest
@@ -40,7 +39,6 @@ jobs:
       uses: codecov/codecov-action@v3
       if: success()
 
-  # Job 2: Scanning de segurança
   security:
     name: Security Scan
     runs-on: ubuntu-latest
@@ -58,7 +56,6 @@ jobs:
         path: ./
         base: main
 
-  # Job 3: Build e teste do Docker
   docker:
     name: Build and Test Docker Image
     runs-on: ubuntu-latest
